@@ -53,6 +53,10 @@ var Workspace = Backbone.Router.extend({
 
  var router = new Workspace();
 
+ $('.add').on('click', function(){
+   router.navigate('add', {trigger: true});
+ });
+
  $('#addBook').on('submit', function(){
 
    var $form = $(this);
