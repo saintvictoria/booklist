@@ -41,12 +41,13 @@
 <div id="booklist" style="display: none">
   <ul>
   </ul>
-  <button class="add">Add</button><button class="delete">Delete</button>
+  <button class="add">Add</button><br>
+  <button class="delete">Delete</button>
 </div>
 <script id="bookTemplate" type="text/x-handlebars-template">
   <ul>
     {{#each books }}
-      <li>{{title}} by {{author}} genre: {{genre}}</li>
+      <li>{{title}} by {{author}} genre -  {{genre}}</li>
     {{/each}}
   </ul>
 </script>
