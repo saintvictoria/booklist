@@ -26,7 +26,7 @@
     <div class="image">
       <img src="../images/books.jpeg">
     </div>
-<div id="books">
+<div id="books" style="display: none">
       <h1>Books I Plan On Reading</h1>
 
     <form id="addBook" action="">
@@ -38,15 +38,17 @@
         </div>
     </form>
 </div>
+<div id="booklist" style="display: none">
+  <ul>
+  </ul>
+  <button class="add">Add</button><button class="delete">Delete</button>
+</div>
 <script id="bookTemplate" type="text/x-handlebars-template">
-
-    <ul>
-        <li>{{title}}</li>
-        <li>{{author}}</li>
-        <li>{{genre}}</li>
-    </ul>
-
-    <button class="delete">Delete</button>
+  <ul>
+    {{#each books }}
+      <li>{{title}} by {{author}} genre: {{genre}}</li>
+    {{/each}}
+  </ul>
 </script>
 
 
