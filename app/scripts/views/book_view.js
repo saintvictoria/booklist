@@ -1,27 +1,50 @@
-var BooksView = Backbone.View.extend({
+
+(function (){
+
+App.Views.BookView = Backbone.View.extend({
 
   tagName: 'ul',
   className: 'bookTemplate',
 
-  initialize: function (options) {
-    this.render(options.collection);
+  // events: {
+  //   'click li': 'deleteMyBook'
+  // },
+
+  initialize: function () {
+    this.render();
+
+    App.allBooks.on('sync', this.render, this);
+    App.allBooks.on('destroy', this.render,this);
+    $('#booklist').html(this.el);
   },
 
-  render: function (collection) {
+  render: function () {
 
     var self = this;
 
-
     var source = $('#bookTemplate').html();
     var template = Handlebars.compile(source);
-    var data = {'books':allBooks.toJSON()};
+    var data = {'books':App.allBooks.toJSON()};
 
-    $('#booklist >ul').html(template(data));
+    this.$el.html(template(data));
 
-
-    $('#booklist').html(this.el);
+    //$('#booklist').html(this.el);
 
     return this;
+  },
+
+  deleteMyBook: function(e){
+
+    e.preventDefault();
+
+    var id = $(e.target).attr('');
+
+    var goodbye = App.allBooks.get(id);
+
+    goodbye.destroy();
   }
 
+
 });
+
+}());

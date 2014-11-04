@@ -23,35 +23,41 @@
     <!-- endbuild -->
   </head>
   <body>
+    <div id="books">
     <div class="image">
       <img src="images/books.jpeg">
     </div>
-<div id="books">
       <h1>Books I Plan On Reading</h1>
 
-    <form id="addBook" action="">
-        <div>
-            <label for="title">Title: </label><input id="title" type="text" />
-            <label for="author">Author: </label><input id="author" type="text" />
-            <label for="genre">Genre:</label><input id="genre" type="text"/>
-        </div>
-    </form>
-</div>
-<div id="booklist">
-  <ul>
-  </ul>
+      <div id="bookAdder"></div>
+        <script id="AddBook" type="text/template">
+        <form id="addBook">
+            <div>
+                <label for="title">Title </label><input id="title" type="text"
+         style="margin-left: 104px;"/>
+                <p>
+                <label for="author">Author First Name </label><input id="authorFirst" type="text" />
+                </p>
+                <p>
+                <label for="author">Author Last Name </label><input id="authorLast" type="text" />
+                </p>
 
-</div>
-<button class="add">Add</button><br>
-<button class="delete">Delete</button>
+            </div>
+            <button class="add">Add</button> <button class="delete">Delete</button>
+        </form>
+        </script>
 
-<script id="bookTemplate" type="text/x-handlebars-template">
-    <ul>
-  {{#each books }}
-    <li>{{title}} by {{author}} genre -  {{genre}}</li>
-  {{/each}}
-  </ul>
-</script>
+    </div>
+    <div id="booklist"></div>
+
+
+    <script id="bookTemplate" type="text/x-handlebars-template">
+        <ul>
+      {{#each books}}
+        <li id="{{_id}}">{{title}} by {{authorFirst}} {{authorLast}} </li>
+      {{/each}}
+      </ul>
+    </script>
 
 
     <!-- build:js scripts/vendor.js -->
@@ -62,11 +68,18 @@
     <script src="../bower_components/backbone/backbone.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+      <script type="text/javascript">
+        window.App = {};
+        App.Models = {};
+        App.Collections = {};
+        App.Views = {};
+    </script>
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/models/book_model.js"></script>
         <script src="scripts/collections/book_collection.js"></script>
         <script src="scripts/views/book_view.js"></script>
+        <script src="scripts/views/add_book_view.js"></script>
         <script src="scripts/routes/book_route.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->

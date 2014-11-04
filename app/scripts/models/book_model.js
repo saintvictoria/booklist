@@ -1,41 +1,20 @@
-var Book = Backbone.Model.extend({
+(function () {
+
+  App.Models.Book = Backbone.Model.extend({
   'defaults': {
-    'author':'',
+    'authorFirst':'',
+    'authorLast': '',
     'title': '',
-    'genre':''
   },
 
   'idAttribute': "_id",
 
   'initialize': function (){
-    var author = this.get('author');
+    var authorFirst = this.get('authorFirst');
+    var authorLast = this.get('authorLast');
     var title = this.get('title');
-    var genre = this.get('genre');
   }
 
 
 });
-
-//var add_book = function(){
-  //var input = $('#bookTemplate').val();
-//  if(input === ''){
-  //  return;
-//  };
-
-  //var book = new Book({
-  //  item: input,
-  //  status:$(this).status,
-  //});
-
-//$('.add').on('click', function
-//(event){
-
-  //event.preventDefault();
-  //add_book();
-//});
-
-//$('#bookTemplate').keyup(function (e){
-  //if (e.keyCode == 13) {
-    //add_book();
-//  }
-//});
+}());
