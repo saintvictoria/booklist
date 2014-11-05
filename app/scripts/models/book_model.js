@@ -1,13 +1,15 @@
 (function () {
 
   App.Models.Book = Backbone.Model.extend({
-  'defaults': {
+
+    'idAttribute': "_id",
+
+       'defaults': {
     'authorFirst':'',
-    'authorLast': '',
-    'title': '',
+     'authorLast': '',
+          'title': '',
   },
 
-  'idAttribute': "_id",
 
   'initialize': function (){
     var authorFirst = this.get('authorFirst');
