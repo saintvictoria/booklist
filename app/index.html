@@ -25,7 +25,7 @@
   <body>
     <div id="books">
     <div class="image">
-      <img src="images/books.jpeg">
+      <img src="images/polka-dot-owl-books.png" width="30%" height="20%"/>
     </div>
       <h1>Books I Plan On Reading</h1>
 
@@ -46,15 +46,27 @@
             <button class="add">Add</button> <button class="delete">Delete</button>
         </form>
         </script>
+        <div id="booklist"></div>
 
     </div>
+
+    <div id="books_read">
+    <div class="image">
+      <img src="images/cat-sleeping-on-stack-of-books.png" width="50%" height="30%"/>
+    </div>
+      <h1>Books I Have Read</h1>
+    </div>
+
     <div id="booklist"></div>
+
 
 
     <script id="bookTemplate" type="text/x-handlebars-template">
         <ul>
       {{#each books}}
-        <li id="{{_id}}">{{title}} by {{authorFirst}} {{authorLast}} </li>
+        <li id="{{_id}}">
+        <input type="checkbox" class="completed-chk">
+        {{title}} by {{authorFirst}} {{authorLast}} </li>
       {{/each}}
       </ul>
     </script>
