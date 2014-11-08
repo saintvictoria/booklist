@@ -11,7 +11,7 @@ App.Views.BookView = Backbone.View.extend({
     this.render();
 
     App.allBooks.on('sync', this.render, this);
-    App.allBooks.on('destroy', this.render,this);
+    //App.allBooks.on('destroy', this.render,this);
     $('#booklist').html(this.el);
 
   },

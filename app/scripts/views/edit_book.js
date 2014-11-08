@@ -6,10 +6,9 @@
     className: 'OneBook',
 
     events: {
-      'submit #updateBook' : 'Update',
+      'submit #updateBook' : 'update',
       'click #delete' : 'deleteBook'
     },
-
 
     initialize: function (options) {
       this.options = options;
@@ -29,11 +28,9 @@
       this.$el.html(template(data));
 
       return this;
-    }
+    },
 
-    }
-
-    Update: function (e) {
+    update: function (e) {
       e.preventDefault();
 
       this.options.book.set({
@@ -42,14 +39,13 @@
         comments: $('#update_comments').val()
       });
 
-
       this.options.book.save()
 
-      Go back to our home page
+      //Go back to our home page
       App.router.navigate('', {trigger: true});
 
     }
 
-  );
+  });
 
 }());
