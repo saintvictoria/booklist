@@ -4,25 +4,31 @@
   App.Routers.AppRouter = Backbone.Router.extend({
 
     initialize: function () {
-      // Light the Fire
       Backbone.history.start();
     },
 
     routes: {
       '' : 'home',
-      'edit/:id' : 'editBook'
+      'add':'addBook',
+      'edit/:id': 'editBook'
     },
 
     home: function () {
-      new App.Views.BookView();
-      new App.Views.BookAdd({ collection: App.allBooks });
+      new App.Views.BookView({collection: App.allBooks});
+      //new App.Views.BookAdd({ collection: App.allBooks });
     },
+
 
     editBook: function (id) {
 
-      var c = App.allBooks.get(id);
+      var b = App.allBooks.get(id);
 
-      new App.Views.OneBook({ book: c });
+      new App.Views.OneBook({ book: b});
+    },
+
+    addBook: function (){
+
+      new App.Views.BookAdd();
     }
 
   });

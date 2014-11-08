@@ -6,59 +6,50 @@
     className: 'OneBook',
 
     events: {
-      'submit #updateCoffee' : 'updateCoffee',
-      'click #delete' : 'deleteCoffee'
+      'submit #updateBook' : 'Update',
+      'click #delete' : 'deleteBook'
     },
 
-    template: _.template($('#singleTemp').html()),
 
     initialize: function (options) {
       this.options = options;
       this.render();
 
-      $('#coffeeForm').empty();
-
-      // Get our Element On Our Page
-      $('#coffeeList').html(this.$el);
+      console.log("we renderin stuff");
+      $('#bookEdit').html(this.$el);
     },
 
     render: function () {
+      // var self = this;
 
-      this.$el.empty();
+      var source = $('#bookEdit').html();
+      var template = Handlebars.compile(source);
+      var data = {'books':App.allBooks.toJSON()};
 
-      this.$el.html(this.template(this.options.coffee.toJSON()));
+      this.$el.html(template(data));
 
-    },
+      return this;
+    }
 
-    updateCoffee: function (e) {
+    }
+
+    Update: function (e) {
       e.preventDefault();
 
-      // Update our Model Instance
-      this.options.coffee.set({
-        name: $('#update_name').val(),
-        brand: $('#update_brand').val(),
+      this.options.book.set({
+        title: $('#update_title').val(),
+        authorFirst: $('#update_authorFirst').val(),
         comments: $('#update_comments').val()
       });
 
-      // Save Instance
-      this.options.coffee.save();
 
-      // Go back to our home page
-      App.router.navigate('', {trigger: true});
+      this.options.book.save()
 
-    },
-
-    deleteCoffee: function (e) {
-      e.preventDefault();
-
-      // Remove Coffee
-      this.options.coffee.destroy();
-
-      // Go home ET
+      Go back to our home page
       App.router.navigate('', {trigger: true});
 
     }
 
-  });
+  );
 
 }());

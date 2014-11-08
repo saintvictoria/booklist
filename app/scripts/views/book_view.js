@@ -6,9 +6,6 @@ App.Views.BookView = Backbone.View.extend({
   tagName: 'ul',
   className: 'bookTemplate',
 
-  // events: {
-  //   'click li': 'deleteMyBook'
-  // },
 
   initialize: function () {
     this.render();
@@ -16,6 +13,7 @@ App.Views.BookView = Backbone.View.extend({
     App.allBooks.on('sync', this.render, this);
     App.allBooks.on('destroy', this.render,this);
     $('#booklist').html(this.el);
+
   },
 
   render: function () {
@@ -28,21 +26,19 @@ App.Views.BookView = Backbone.View.extend({
 
     this.$el.html(template(data));
 
-    //$('#booklist').html(this.el);
-
     return this;
-  },
-
-  deleteMyBook: function(e){
-
-    e.preventDefault();
-
-    var id = $(e.target).attr('');
-
-    var goodbye = App.allBooks.get(id);
-
-    goodbye.destroy();
   }
+
+  // deleteMyBook: function(e){
+  //
+  //   e.preventDefault();
+  //
+  //   var id = $(e.target).attr('');
+  //
+  //   var goodbye = App.allBooks.get(id);
+  //
+  //   goodbye.destroy();
+  // }
 
 
 });

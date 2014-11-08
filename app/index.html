@@ -23,30 +23,61 @@
     <!-- endbuild -->
   </head>
   <body>
+
     <div id="books">
-    <div class="image">
-      <img src="images/polka-dot-owl-books.png" width="30%" height="20%"/>
-    </div>
+      <div class="image">
+        <img src="images/polka-dot-owl-books.png" width="30%" height="20%"/>
+      </div>
+
+      <a href="/#add" class="addButton"><button>Add Book</button></a>
       <h1>Books I Plan On Reading</h1>
 
       <div id="bookAdder"></div>
-        <script id="AddBook" type="text/template">
-        <form id="addBook">
-            <div>
-                <label for="title">Title </label><input id="title" type="text"
-         style="margin-left: 104px;"/>
-                <p>
-                <label for="author">Author First Name </label><input id="authorFirst" type="text" />
-                </p>
-                <p>
-                <label for="author">Author Last Name </label><input id="authorLast" type="text" />
-                </p>
+      <div id="bookArea"></div>
+      <hr/>
+    <!-- add book -->
+      <script id="AddBook" type="text/template">
 
-            </div>
-            <button class="add">Want To Read</button> <button class="read">All Ready Read</button>
+        <form id="addBook">
+          <div>
+            <label for="title">Title </label><input id="title" type="text"
+          style="margin-left: 104px;"/>
+          <p>
+            <label for="author">Author First Name </label><input id="authorFirst" type="text" />
+          </p>
+          <p>
+            <label for="author">Author Last Name </label><input id="authorLast" type="text" />
+          </p>
+          </div>
+        <button class="add">Want To Read</button>
         </form>
-        </script>
-        <div id="booklist"></div>
+      <hr/>
+
+      </script>
+
+  <!--   edit book -->
+      <script id="bookEdit" type="text/template">
+
+      <li  id="{{ _id }}">
+        <form id="updateBook">
+
+            <div id="book-header">
+              <input type="text" value={{Title}} id="update_title" />
+              <input type="text" value={{Author}} id="update_authorFirst" />
+            <div class="comments">
+                <textarea id="update_comments">{{comments}}</textarea>
+            </div>
+            <div class="genre"></div>
+
+
+            <button>Update Book</button>
+            <button id="delete">Delete</button>
+        </form>
+      </li>
+
+    </script>
+
+      <div id="booklist"></div>
 
     </div>
 
@@ -57,16 +88,14 @@
       <h1>Books I Have Read</h1>
     </div>
 
-    <div id="booklist"></div>
 
-
-
-    <script id="bookTemplate" type="text/x-handlebars-template">
+<!-- book list on page
+ -->    <script id="bookTemplate" type="text/x-handlebars-template">
         <ul>
       {{#each books}}
         <li id="{{_id}}">
         <input type="checkbox" class="completed-chk">
-        {{title}} by {{authorFirst}} {{authorLast}} </li>
+        <a href="#/edit/{{_id}}">{{title}} by {{authorFirst}} {{authorLast}} </li></a>
       {{/each}}
       </ul>
     </script>
@@ -85,6 +114,7 @@
         App.Models = {};
         App.Collections = {};
         App.Views = {};
+        App.Routers = {};
     </script>
 
         <!-- build:js scripts/main.js -->
