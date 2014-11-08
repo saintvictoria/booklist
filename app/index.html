@@ -29,16 +29,38 @@
         <img src="images/polka-dot-owl-books.png" width="30%" height="20%"/>
       </div>
 
-      <a href="/#add" class="addButton"><button>Add Book</button></a>
-      <h1>Books I Plan On Reading</h1>
+      <main></main>
+    </div>
 
-      <div id="bookAdder"></div>
-      <div id="bookArea"></div>
-      <hr/>
+    <!-- book list on page
+    -->    <script id="bookList" type="text/x-handlebars-template">
+
+               <a href="/#add" class="addButton"><button>Add Book</button></a>
+               <h1>Books I Plan On Reading</h1>
+            <ul>
+          {{#each books}}
+            <li id="{{_id}}">
+            <input type="checkbox" class="completed-chk">
+            <a href="#/edit/{{_id}}">{{title}} by {{authorFirst}} {{authorLast}} </li></a>
+          {{/each}}
+          </ul>
+          <button id="deleteBook">Delete</button>
+
+    <!--
+          <div id="books_read">
+            <div class="image">
+              <img src="images/cat-sleeping-on-stack-of-books.png" width="50%" height="30%"/>
+            </div>
+            <h1>Books I Have Read</h1>
+          </div>
+    -->
+        </script>
+
+
     <!-- add book -->
       <script id="AddBook" type="text/template">
 
-        <form id="addBook">
+        <form id="addBookForm">
           <div>
             <label for="title">Title </label><input id="title" type="text"
           style="margin-left: 104px;"/>
@@ -51,62 +73,45 @@
           </div>
         <button class="add">Want To Read</button>
         </form>
-      <hr/>
 
       </script>
 
   <!--   edit book -->
       <script id="bookEdit" type="text/template">
 
-      <li  id="{{ _id }}">
+      <div>
         <form id="updateBook">
-
+          <input type="hidden" name="_id" value="{{ _id }}">
             <div id="book-header">
-              <input type="text" value={{Title}} id="update_title" />
-              <input type="text" value={{Author}} id="update_authorFirst" />
-            <div class="comments">
-                <textarea id="update_comments">{{comments}}</textarea>
-            </div>
+
+              <input type="text" value="{{Title}}" id="update_title" />
+              <input type="text" value="{{Author}}" id="update_authorFirst" />
+              <textarea id="update_comments">{{comments}}</textarea>
+
             <div class="genre">
-            <button>Children</button>
-            <button>Fiction</button>
-            <button>Non-Fiction</button>
-            <button>SciFi/Fantasy</button>
-            <button>Biography</button>
-            <button>Reference</button>
+            <input type="radio" name="genre" value="children"/>Children<br>
+            <input type="radio" name="genre" value="fiction"/>Fiction<br>
+            <input type="radio" name="genre" value="non-fiction"/>Non-Fiction<br>
+            <input type="radio" name="genre" value="scifi-fantasy"/>SciFi/Fantasy<br>
+            <input type="radio" name="genre" value="biography"/>Biography<br>
+            <input type="radio" name="genre" value="reference"/>Reference<br>
             </div>
 
 
-            <button>Update Book</button>
-            <button id="delete">Delete</button>
+            <button id="updateBook">Update Book</button>
+
             </div>
         </form>
-      </li>
+      </div>
 
     </script>
 
-      <div id="booklist"></div>
 
 
 
-    <div id="books_read">
-    <div class="image">
-      <img src="images/cat-sleeping-on-stack-of-books.png" width="50%" height="30%"/>
-    </div>
-      <h1>Books I Have Read</h1>
-    </div>
 
 
-<!-- book list on page
- -->    <script id="bookTemplate" type="text/x-handlebars-template">
-        <ul>
-      {{#each books}}
-        <li id="{{_id}}">
-        <input type="checkbox" class="completed-chk">
-        <a href="#/edit/{{_id}}">{{title}} by {{authorFirst}} {{authorLast}} </li></a>
-      {{/each}}
-      </ul>
-    </script>
+
 
 
     <!-- build:js scripts/vendor.js -->
@@ -118,7 +123,7 @@
     <!-- endbower -->
     <!-- endbuild -->
       <script type="text/javascript">
-        window.App = {};
+ window.App = {};
         App.Models = {};
         App.Collections = {};
         App.Views = {};
