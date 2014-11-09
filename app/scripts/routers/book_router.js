@@ -23,7 +23,7 @@
 
       var b = App.allBooks.get(id);
 
-      new App.Views.OneBook({ book: b});
+      new App.Views.EditBook({ book: b});
     },
 
     addBook: function (){

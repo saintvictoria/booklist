@@ -4,16 +4,16 @@
 
 
     events: {
-      'submit #addBook' : 'addNewBook'
+      'submit #addBookForm' : 'addNewBook'
     },
 
     initialize: function () {
       this.render();
-      $('#bookAdder').html(this.$el);
+      $('main').html(this.$el);
     },
 
     render: function () {
-      //var form_html = $('#AddBook').html();
+      
       this.$el.html($('#AddBook').html());
     },
 
@@ -30,7 +30,7 @@
       // Add to our collection & save to server
       App.allBooks.add(book).save(null, {
         success: function(){
-          $('#addBook')[0].reset();
+          $('#addBookForm')[0].reset();
           App.router.navigate('', {trigger: true});
 
         }

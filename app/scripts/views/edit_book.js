@@ -1,9 +1,6 @@
 (function () {
 
-  App.Views.OneBook = Backbone.View.extend({
-
-    tagName: 'ul',
-    className: 'OneBook',
+  App.Views.EditBook = Backbone.View.extend({
 
     events: {
       'submit #updateBook' : 'update',
@@ -14,18 +11,17 @@
       this.options = options;
       this.render();
 
-      console.log("we renderin stuff");
-      $('#bookEdit').html(this.$el);
+      $('main').html(this.$el);
     },
 
     render: function () {
-      // var self = this;
 
       var source = $('#bookEdit').html();
       var template = Handlebars.compile(source);
-      var data = {'books':App.allBooks.toJSON()};
+      var bookdata = this.options.book.toJSON();
 
-      this.$el.html(template(data));
+
+      this.$el.html(template(bookdata));
 
       return this;
     },
