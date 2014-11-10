@@ -23,7 +23,7 @@
 
 
 (function () {
-var my_server = 'http://tiy-atl-fe-server.herokuapp.com/collections/vicbooks';
+var my_server = 'http://tiy-atl-fe-server.herokuapp.com/collections/vicbook';
 
 App.Collections.Book = Backbone.Collection.extend({
 
@@ -39,7 +39,7 @@ App.Collections.Book = Backbone.Collection.extend({
 App.Views.BookView = Backbone.View.extend({
   //this is the element that backbone will create
   tagName: 'div',
-  
+
 
 
   initialize: function () {
@@ -65,17 +65,7 @@ App.Views.BookView = Backbone.View.extend({
     return this;
   }
 
-  // deleteMyBook: function(e){
-  //
-  //   e.preventDefault();
-  //
-  //   var id = $(e.target).attr('');
-  //
-  //   var goodbye = App.allBooks.get(id);
-  //
-  //   goodbye.destroy();
-  // }
-
+  
 
 });
 
@@ -180,7 +170,7 @@ App.Views.BookView = Backbone.View.extend({
 
 
       }).fail(function(){
-        console.log('fail' , arguments);
+        console.log('comments');
       });
 
       //Go back to our home page
@@ -190,14 +180,10 @@ App.Views.BookView = Backbone.View.extend({
     deleteBook: function (e) {
       e.preventDefault();
 
-
       this.options.book.destroy({wait: true,
          success: function(){
            App.router.navigate('', {trigger: true});
          }});
-
-
-
 
     }
 
@@ -222,7 +208,6 @@ App.Views.BookView = Backbone.View.extend({
 
     home: function () {
       new App.Views.BookView({collection: App.allBooks});
-      //new App.Views.BookAdd({ collection: App.allBooks });
     },
 
 
@@ -230,7 +215,7 @@ App.Views.BookView = Backbone.View.extend({
 
       var b = App.allBooks.get(id);
 
-      new App.Views.EditBook({ book: b});
+      new App.Views.EditBook({ book: b });
     },
 
     addBook: function (){
