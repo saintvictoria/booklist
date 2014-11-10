@@ -32,6 +32,7 @@
       this.options.book.set({
         title: $('#update_title').val(),
         authorFirst: $('#update_authorFirst').val(),
+        authorLast:$('#update_authorLast').val,
         comments: $('#update_comments').val()
       });
 

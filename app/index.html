@@ -41,7 +41,8 @@
           {{#each books}}
             <li id="{{_id}}">
             <input type="checkbox" class="completed-chk">
-            <a href="#/edit/{{_id}}">{{title}} by {{authorFirst}} {{authorLast}} </li></a>
+            <a href="#/edit/{{_id}}">{{title}} by {{authorFirst}} {{authorLast}}</a>
+            <em>{{comments}}</em></li>
           {{/each}}
           </ul>
           <button id="deleteBook">Delete</button>
@@ -84,9 +85,10 @@
           <input type="hidden" name="_id" value="{{ _id }}">
             <div id="book-header">
 
-              <input type="text" value="{{title}}" id="update_title" />
-              <input type="text" value="{{authorFirst}}" id="update_authorFirst" />
-              <textarea id="update_comments" cols="45" rows="6">{{comments}}</textarea>
+              Title: <input type="text" value="{{title}}" id="update_title" /><br>
+              Author's First Name:<input type="text" value="{{authorFirst}}" id="update_authorFirst" /><br>
+              Author's Last Name:<input type="text" value="{{authorLast}}" id="update_authorLast" /><br>
+              Comments:<br><textarea id="update_comments" cols="45" rows="6">{{comments}}</textarea>
 
             <div class="genre">
             <input type="radio" name="genre" value="children"/>Children<br>

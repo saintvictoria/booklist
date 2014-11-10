@@ -4,14 +4,14 @@
 App.Views.BookView = Backbone.View.extend({
   //this is the element that backbone will create
   tagName: 'div',
-  //className: 'bookTemplate',
+  
 
 
   initialize: function () {
     this.render();
 
     App.allBooks.on('sync', this.render, this);
-    //App.allBooks.on('destroy', this.render,this);
+    // App.allBooks.on('destroy', this.render,this);
     //this is where the backbone element goes into the tree
     $('main').html(this.$el);
 
