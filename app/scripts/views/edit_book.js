@@ -3,7 +3,7 @@
   App.Views.EditBook = Backbone.View.extend({
 
     events: {
-      'submit #updateBook' : 'update',
+      'click #updateBook' : 'update',
       'click #delete' : 'deleteBook'
     },
 
@@ -36,9 +36,23 @@
         comments: $('#update_comments').val()
       });
 
-      this.options.book.save()
+      this.options.book.save(null, {
+        success: function(){
+          App.router.navigate('', {trigger: true});
+        }
+      });
 
       //Go back to our home page
+      App.router.navigate('', {trigger: true});
+
+    },
+    deleteBook: function (e) {
+      e.preventDefault();
+
+      // Remove Coffee
+      this.options.book.destroy();
+
+      // Go home ET
       App.router.navigate('', {trigger: true});
 
     }
