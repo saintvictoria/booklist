@@ -1,6 +1,6 @@
 
 (function () {
-var my_server = 'http://tiy-atl-fe-server.herokuapp.com/collections/vicbooks';
+var my_server = 'http://tiy-atl-fe-server.herokuapp.com/collections/vicbook';
 
 App.Collections.Book = Backbone.Collection.extend({
 

@@ -4,7 +4,7 @@
 App.Views.BookView = Backbone.View.extend({
   //this is the element that backbone will create
   tagName: 'div',
-  
+
 
 
   initialize: function () {
@@ -30,17 +30,7 @@ App.Views.BookView = Backbone.View.extend({
     return this;
   }
 
-  // deleteMyBook: function(e){
-  //
-  //   e.preventDefault();
-  //
-  //   var id = $(e.target).attr('');
-  //
-  //   var goodbye = App.allBooks.get(id);
-  //
-  //   goodbye.destroy();
-  // }
-
+  
 
 });
 

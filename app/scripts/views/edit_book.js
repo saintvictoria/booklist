@@ -52,7 +52,7 @@
 
 
       }).fail(function(){
-        console.log('fail' , arguments);
+        console.log('comments');
       });
 
       //Go back to our home page
@@ -62,14 +62,10 @@
     deleteBook: function (e) {
       e.preventDefault();
 
-
       this.options.book.destroy({wait: true,
          success: function(){
            App.router.navigate('', {trigger: true});
          }});
-
-
-
 
     }
 

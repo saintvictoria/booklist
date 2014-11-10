@@ -15,7 +15,6 @@
 
     home: function () {
       new App.Views.BookView({collection: App.allBooks});
-      //new App.Views.BookAdd({ collection: App.allBooks });
     },
 
 
@@ -23,7 +22,7 @@
 
       var b = App.allBooks.get(id);
 
-      new App.Views.EditBook({ book: b});
+      new App.Views.EditBook({ book: b });
     },
 
     addBook: function (){
