@@ -22,6 +22,14 @@
 
 
       this.$el.html(template(bookdata));
+      this.$el.find('input[type=radio]').filter(function (_, radio){
+        var x = (typeof bookdata.genre != undefined)&&radio.value===bookdata.genre;
+          return radio.name === "genre" && x;
+
+        }).each(function(_, radio){
+          radio.setAttribute('checked','checked');
+
+        });
 
       return this;
     },
@@ -33,7 +41,8 @@
         title: $('#update_title').val(),
         authorFirst: $('#update_authorFirst').val(),
         authorLast:$('#update_authorLast').val,
-        comments: $('#update_comments').val()
+        comments: $('#update_comments').val(),
+        genre: $('#updateBook')[0].genre.value
       });
 
       this.options.book.save(null, {
@@ -43,17 +52,20 @@
       });
 
       //Go back to our home page
-      App.router.navigate('', {trigger: true});
+      //App.router.navigate('', {trigger: true});
 
     },
     deleteBook: function (e) {
       e.preventDefault();
 
-      // Remove Coffee
-      this.options.book.destroy();
 
-      // Go home ET
-      App.router.navigate('', {trigger: true});
+      this.options.book.destroy({wait: true,
+         success: function(){
+           App.router.navigate('', {trigger: true});
+         }});
+
+
+
 
     }
 
