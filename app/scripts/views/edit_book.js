@@ -40,15 +40,19 @@
       this.options.book.set({
         title: $('#update_title').val(),
         authorFirst: $('#update_authorFirst').val(),
-        authorLast:$('#update_authorLast').val,
+        authorLast:$('#update_authorLast').val(),
         comments: $('#update_comments').val(),
         genre: $('#updateBook')[0].genre.value
       });
-
+      var self = this;
       this.options.book.save(null, {
-        success: function(){
+        wait: true}).done(function(){
+          self.render()
           App.router.navigate('', {trigger: true});
-        }
+
+
+      }).fail(function(){
+        console.log('fail' , arguments);
       });
 
       //Go back to our home page
