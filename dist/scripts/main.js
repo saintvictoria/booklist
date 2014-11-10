@@ -39,13 +39,13 @@ App.Collections.Book = Backbone.Collection.extend({
 App.Views.BookView = Backbone.View.extend({
   //this is the element that backbone will create
   tagName: 'div',
-
+  
 
 
   initialize: function () {
     this.render();
 
-    //App.allBooks.on('sync', this.render, this);
+    App.allBooks.on('sync', this.render, this);
     // App.allBooks.on('destroy', this.render,this);
     //this is where the backbone element goes into the tree
     $('main').html(this.$el);
@@ -96,7 +96,7 @@ App.Views.BookView = Backbone.View.extend({
     },
 
     render: function () {
-
+      
       this.$el.html($('#AddBook').html());
     },
 
@@ -150,6 +150,14 @@ App.Views.BookView = Backbone.View.extend({
 
 
       this.$el.html(template(bookdata));
+      this.$el.find('input[type=radio]').filter(function (_, radio){
+        var x = (typeof bookdata.genre != undefined)&&radio.value===bookdata.genre;
+          return radio.name === "genre" && x;
+
+        }).each(function(_, radio){
+          radio.setAttribute('checked','checked');
+
+        });
 
       return this;
     },
@@ -160,28 +168,36 @@ App.Views.BookView = Backbone.View.extend({
       this.options.book.set({
         title: $('#update_title').val(),
         authorFirst: $('#update_authorFirst').val(),
-        authorLast:$('#update_authorLast').val,
-        comments: $('#update_comments').val()
+        authorLast:$('#update_authorLast').val(),
+        comments: $('#update_comments').val(),
+        genre: $('#updateBook')[0].genre.value
       });
-
+      var self = this;
       this.options.book.save(null, {
-        success: function(){
+        wait: true}).done(function(){
+          self.render()
           App.router.navigate('', {trigger: true});
-        }
+
+
+      }).fail(function(){
+        console.log('fail' , arguments);
       });
 
       //Go back to our home page
-      App.router.navigate('', {trigger: true});
+      //App.router.navigate('', {trigger: true});
 
     },
     deleteBook: function (e) {
       e.preventDefault();
 
-      // Remove Coffee
-      this.options.book.destroy();
 
-      // Go home ET
-      App.router.navigate('', {trigger: true});
+      this.options.book.destroy({wait: true,
+         success: function(){
+           App.router.navigate('', {trigger: true});
+         }});
+
+
+
 
     }
 
