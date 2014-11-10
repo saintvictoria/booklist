@@ -1,7 +1,7 @@
 
 (function (){
 
-App.Views.BookView = Backbone.View.extend({
+App.Views.BookView = Parse.View.extend({
   //this is the element that backbone will create
   tagName: 'div',
 
@@ -30,7 +30,7 @@ App.Views.BookView = Backbone.View.extend({
     return this;
   }
 
-  
+
 
 });
 

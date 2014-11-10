@@ -1,8 +1,8 @@
 (function () {
 
-  App.Models.Book = Backbone.Model.extend({
+  App.Models.Book = Parse.Object.extend({
 
-    'idAttribute': "_id",
+    'idAttribute': "objectId",
 
        'defaults': {
     'authorFirst':'',
@@ -10,6 +10,7 @@
           'title': '',
   },
 
+  className: 'Library',
 
   'initialize': function (){
     var authorFirst = this.get('authorFirst');

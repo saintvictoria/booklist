@@ -39,9 +39,9 @@
                <h1>Books I Plan On Reading</h1>
             <ul>
           {{#each books}}
-            <li id="{{_id}}">
+            <li id="{{objectId}}">
             <input type="checkbox" class="completed-chk">
-            <a href="#/edit/{{_id}}">{{title}} by {{authorFirst}} {{authorLast}}</a>
+            <a href="#/edit/{{objectId}}">{{title}} by {{authorFirst}} {{authorLast}}</a>
             <b>{{genre}}</b>
             <em>{{comments}}</em></li>
           {{/each}}
@@ -82,7 +82,7 @@
 
       <div>
         <form id="updateBook">
-          <input type="hidden" name="_id" value="{{ _id }}">
+          <input type="hidden" name="objectId" value="{{ objectId }}">
             <div id="book-header">
 
               Title: <input type="text" value="{{title}}" id="update_title" /><br>
@@ -123,9 +123,9 @@
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/handlebars/handlebars.js"></script>
-    <script src="../bower_components/backbone/backbone.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="//www.parsecdn.com/js/parse-1.3.1.min.js"></script>
       <script type="text/javascript">
  window.App = {};
         App.Models = {};

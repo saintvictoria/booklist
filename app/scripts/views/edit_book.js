@@ -1,9 +1,12 @@
 (function () {
 
-  App.Views.EditBook = Backbone.View.extend({
+  App.Views.EditBook = Parse.View.extend({
+      tagName: 'ul',
+      className: 'editbook',
+
 
     events: {
-      'click #updateBook' : 'update',
+      'submit #updateBook' : 'update',
       'click #delete' : 'deleteBook'
     },
 
